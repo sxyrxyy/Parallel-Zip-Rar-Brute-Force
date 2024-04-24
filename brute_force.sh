@@ -61,7 +61,7 @@ extract_file() {
     local file_type="${file##*.}"
 
     if [[ "$file_type" == "rar" ]]; then
-        #echo "Trying Password: $password"
+        echo "Trying Password: $password"
         output=$(unrar x "$file" -p"$password" $extract_dir -y)
         if [[ "$output" == *"All OK"* ]]; then
             echo "Password Found: '$password', For File: $file"
@@ -72,26 +72,17 @@ extract_file() {
             return 1
         fi
     elif [[ "$file_type" == "zip" ]]; then
-        local temp_dir=$(mktemp -d)
-        #echo "Trying Password: $password"
-        output=$(7z x "$file" "-o$temp_dir" "-p$password" 2>&1)
+        echo "Trying Password: $password"
+        output=$(7z x "$file" "-o$extract_dir" "-p$password" -y 2>&1)
         if [[ $output == *"Wrong password"* ]]; then
-            rm -r "$temp_dir"
             return 1
         elif [[ $output == *"Everything is Ok"* ]]; then
             echo "Password found for $file: '$password'"
             echo "Extracting $file with password: $password"
             echo ""
-            if ! mv "$temp_dir"/* "$extract_dir"; then
-                echo "Error moving files from $temp_dir to $extract_dir"
-                rm -r "$temp_dir"
-                return 1
-            fi
-            rm -r "$temp_dir"
             return 0
         else
             echo "Error extracting $file with password $password: $output"
-            rm -r "$temp_dir"
             return 1
         fi
     fi
