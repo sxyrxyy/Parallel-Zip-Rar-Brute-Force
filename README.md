@@ -17,6 +17,7 @@ Usage: brute_force.sh [-d <directory>] [-w <wordlist>] [-e <extract_dir>] [-f <f
 - **Parallel Processing:** Utilizes parallel processing to speed up the cracking process.
 - **Supports ZIP and RAR:** Capable of cracking both ZIP and RAR archive formats.
 - **Flexible Usage:** Supports cracking a single file or traversing through directories.
+  - You can change the number of jobs/vCPUs you want to run in parallel (-j)
 
 #### Example:
 
