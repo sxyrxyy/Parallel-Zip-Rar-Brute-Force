@@ -23,7 +23,7 @@ Usage: brute_force.sh [-d <directory>] [-w <wordlist>] [-e <extract_dir>] [-f <f
 
 ```bash
 ./brute_force.sh -d /path/to/archives -w wordlist.txt -e /path/to/extracted
-./brute_force.sh -d /path/to/archives/archive.zip -w wordlist.txt -e /path/to/extracted
+./brute_force.sh -f /path/to/archives/archive.zip -w wordlist.txt -e /path/to/extracted
 ```
 
 #### Notes:
